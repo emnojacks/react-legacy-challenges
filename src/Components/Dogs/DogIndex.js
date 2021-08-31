@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 
 class DogIndex extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             loaded: false,
             dogImg: " "
@@ -11,27 +11,32 @@ class DogIndex extends Component {
     }
     
     async componentDidMount() {
-    let res = await fetch("https://dog.ceo/dog-api/breeds/image/random")
-        let dogs = await res.json();
-        
+        let res = await fetch("https://dog.ceo/api/breeds/image/random")
+        let dogs = await res.json()
+        .then(dogs=> {
         this.setState({
             loaded: true,
+            dogImg: dogs.message,
         })
-        
-        console.log("here come the dogs", dogs)
+            console.log("here come the dogs", dogs) 
+        })
+        .catch((err) =>
+            console.log(err))
+       
     }
     
-    async componentDidUpdate(dogs) {
-        this.setState({
-            dogImg: dogs.message
-        })
-    }
+    
+    
+    // async componentDidUpdate(dogs) {
+    //     
+    //     })
+    // }
     
     render() { 
         return (
             <div className='main'>
-                <img src=
-                    {this.state.dogImg}
+                <img
+                    src={this.state.dogImg}
                     alt="no dogs so sad"
                 >
                 </img>
@@ -46,11 +51,8 @@ class DogIndex extends Component {
                 >
                 Fetch
                 </button>
-                
-            </div>
-            
-          
-
+                <br></br>
+    </div>
  );
     }
 }
