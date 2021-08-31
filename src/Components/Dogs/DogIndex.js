@@ -25,8 +25,6 @@ class DogIndex extends Component {
        
     }
     
-    
-    
     // async componentDidUpdate(dogs) {
     //     
     //     })
