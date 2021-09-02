@@ -61,6 +61,7 @@ class ToDoList extends Component {
     
     //REMOVE TASK FROM TO DO LIST
     markComplete = (index) => {
+    console.log(index)
         window.alert("Are you sure?")
         //this.state.completedTasks.push()
         let completedTask=this.state.toDoTasks.splice(index, 1);
@@ -125,7 +126,7 @@ class ToDoList extends Component {
                             <td>{item}</td>
                             <td>
                             <Button   
-                                onClick={( e ) => this.markComplete(e)}>Completed</Button></td>
+                                onClick={(index) => this.markComplete(index)}>Completed</Button></td>
                         </tr>
                        
                             )}
