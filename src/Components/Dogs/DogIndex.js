@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 
 class DogIndex extends Component {
@@ -43,12 +44,12 @@ class DogIndex extends Component {
                 </br>
                 <br>
                 </br>
-                <button
+                <Button
                     type="submit"
                     onClick={(e)=>this.componentDidMount()}
                 >
                 Fetch
-                </button>
+                </Button>
                 <br></br>
     </div>
  );

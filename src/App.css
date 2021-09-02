@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+/* 
+.toDoListType {
+list-style-type: none;
+} */
+
+
+tr {
+background-color: rgba(242, 248, 241, 0.603);
+} 
+
+/* td {
+padding: 5px;
+} */
+
+
+

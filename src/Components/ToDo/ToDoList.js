@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { Button, Table } from 'reactstrap';
 
 class ToDoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
             task: " ",
-            toDoTasks: ["What do you have to do?"],
-            completedTasks: ["What have you done?"],
+            toDoTasks: [],
+            completedTasks: [],
             loaded: false
         }
+        this.createTask = this.createTask.bind(this);
+        this.addToList = this.addToList.bind(this);
+        this.markComplete = this.markComplete.bind(this);
     }
     
     componentDidMount() {
@@ -18,11 +22,16 @@ class ToDoList extends Component {
         console.log("component mounted")
     }
     
-    componentDidUpdate(toDoTasks) {
+    componentDidUpdate() {
         console.log("component updated")
     }
     
-    componentWillUnmount() {
+    componentWillUnmount(e) {
+        this.setState({
+            task: " ",
+            toDoTasks: [],
+            completedTasks: [],
+        })
         console.log("component destroyd")
     }
     
@@ -35,17 +44,20 @@ class ToDoList extends Component {
     };
     
     //ADD TASK TO TO DO LIST
-    addToList = (task) => {
+    addToList = () => {
         this.state.toDoTasks.push(this.state.task)
         console.log(`task ${this.state.task} added to to do list`)
         console.log(this.state.toDoTasks)
     }
     
     //REMOVE TASK FROM TO DO LIST
-    markComplete = (task) => {
-        window.alert("Are you sure you want to mark this task as completed?")
-        this.state.completedTasks.push(0)
-        this.state.toDoTasks.splice(this.state.task);
+    markComplete = (index) => {
+        window.alert("Are you sure?")
+        // this.state.completedTasks.push()
+        let completedTask=this.state.toDoTasks.splice(index, 1);
+        this.setState({
+            toDoTasks: completedTask
+        })
         console.log(`${this.state.task} marked completed`)
         console.log(`${this.state.completedTasks} tasks completed`)
     }
@@ -69,38 +81,59 @@ class ToDoList extends Component {
                         placeholder=" Just do it"
                         onChange={(e) => this.createTask(e)}
                     >
-                        
                 </input>
                  <br></br>
                     &nbsp;
-                    <button
+                    <Button
                     onClick={(task) => { this.addToList(task); this.createTask(task) }}
-                    
-                    >
-                        Add to List
-                    </button>
+                    >Add to List
+                    </Button>
                  <br></br>
                 &nbsp;
-                   <br></br>
-               <br></br>
-                
-                <div>
-                    <h2>Tasks to Complete</h2>
-                    
-                    {this.state.toDoTasks.map((item, index) => <li key={index}>{item}&nbsp;&nbsp;
-                        <button
-                            onClick={(e) => this.markComplete(e)}>Mark Complete</button>
-                    </li>)}
-                </div>
+                <br></br>
                 <br></br>
                 
-                  <div className="completedTasks">
-                    <h2>Completed Tasks</h2>
-                    
-                 {this.state.completedTasks.map((task, index) => <li key={index}>{task}</li>)}
+                <div>
+                    <Table striped>
+                <thead>
+                <tr>
+                <th scope="row">
+                Task #</th>
+                <th>
+                Item Description</th>
+                <th>
+               Mark Completed</th>
+                        </tr>
+                </thead>
+                    <tbody>
+                    {this.state.toDoTasks.map((item, index) =>
+                        <tr
+                        className="toDoListType"
+                            key={index}>
+                            <td>{index}</td>
+                            <td>{item}</td>
+                            <td>
+                            <Button   
+                                    onClick={( e ) => this.markComplete( e)}>Completed</Button></td>
+                        </tr>
+                       
+                            )}
+                            </tbody>
+                    </Table>
                 </div>
+                <br></br>
+                  <div className="completedTasks">
+                    {/* <h2>Completed Tasks</h2>  
+                 {this.state.completedTasks.map((task, index) => <li key={index}>{task}</li>)} */}
+                </div>
+                
+                <br></br><br></br>
+                <Button
+                onClick={(e)=>this.componentWillUnmount(e)}
+                >Clear Lists</Button>
+                     <br></br>
+                    <br></br>
             </div>
-            
         );
     }
 }
