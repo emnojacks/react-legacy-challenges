@@ -11,6 +11,7 @@ class ToDoList extends Component {
             completedTasks: [],
             loaded: false
         }
+//I know these are unnecessary bc I used fat arrow funcs
         this.createTask = this.createTask.bind(this);
         this.addToList = this.addToList.bind(this);
         this.markComplete = this.markComplete.bind(this);
@@ -29,12 +30,12 @@ class ToDoList extends Component {
     
     //CLEAR LIST
     componentWillUnmount() {
-        this.setState({
-            task: " ",
-            taskId: 0,
-            toDoTasks: [],
-            completedTasks: [],
-        })
+        // this.setState({
+        //     task: " ",
+        //     taskId: 0,
+        //     toDoTasks: [],
+        //     completedTasks: [],
+        // })
         console.log("component destroyed")
     }
     
@@ -66,9 +67,10 @@ class ToDoList extends Component {
     console.log(index)
         window.alert("Are you sure?")
         //this.state.completedTasks.push()
-        let completedTask=this.state.toDoTasks.splice(index, 1, this.state.toDoTasks);
+        let updatedList = this.state.toDoTasks.splice(index, 1);
+        console.log(updatedList)
         this.setState({
-            toDoTasks: completedTask
+            toDoTasks: updatedList
         })
         console.log(`Task ${index} marked completed`)
     }
