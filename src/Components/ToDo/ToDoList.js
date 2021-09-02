@@ -26,13 +26,14 @@ class ToDoList extends Component {
         console.log("component updated")
     }
     
-    componentWillUnmount(e) {
+    //CLEAR LIST
+    componentWillUnmount() {
         this.setState({
             task: " ",
             toDoTasks: [],
             completedTasks: [],
         })
-        console.log("component destroyd")
+        console.log("component destroyed")
     }
     
     //CREATE ONE TASK
@@ -45,7 +46,15 @@ class ToDoList extends Component {
     
     //ADD TASK TO TO DO LIST
     addToList = () => {
-        this.state.toDoTasks.push(this.state.task)
+        if (this.state.task !== " ") {
+            this.state.toDoTasks.push(this.state.task)
+        }
+        // if (this.state.task!==" "){
+        //     this.setState({
+        //         task: " ",
+        //         toDoTasks: [...this.state.toDoTasks, this.state.task]
+        //     })
+        // }
         console.log(`task ${this.state.task} added to to do list`)
         console.log(this.state.toDoTasks)
     }
@@ -53,7 +62,7 @@ class ToDoList extends Component {
     //REMOVE TASK FROM TO DO LIST
     markComplete = (index) => {
         window.alert("Are you sure?")
-        // this.state.completedTasks.push()
+        //this.state.completedTasks.push()
         let completedTask=this.state.toDoTasks.splice(index, 1);
         this.setState({
             toDoTasks: completedTask
@@ -80,12 +89,14 @@ class ToDoList extends Component {
                         title="Add an task to your to do list"
                         placeholder=" Just do it"
                         onChange={(e) => this.createTask(e)}
+                        //onChange={this.createTask}
                     >
                 </input>
                  <br></br>
                     &nbsp;
-                    <Button
-                    onClick={(task) => { this.addToList(task); this.createTask(task) }}
+                <Button
+                    // onClick={this.addToList}
+                    onClick={(task) => { this.createTask(task); this.addToList(task) }}
                     >Add to List
                     </Button>
                  <br></br>
@@ -114,7 +125,7 @@ class ToDoList extends Component {
                             <td>{item}</td>
                             <td>
                             <Button   
-                                    onClick={( e ) => this.markComplete( e)}>Completed</Button></td>
+                                onClick={( e ) => this.markComplete(e)}>Completed</Button></td>
                         </tr>
                        
                             )}
