@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 
 class DogIndex extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             loaded: false,
             dogImg: " "
