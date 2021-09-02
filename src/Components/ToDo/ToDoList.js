@@ -42,10 +42,11 @@ class ToDoList extends Component {
     }
     
     //REMOVE TASK FROM TO DO LIST
-    markComplete = (event) => {
-        this.state.completedTasks.push(event.target.value)
-        this.state.toDoTasks.splice(0);
-        console.log(`${event.target.value} marked completed`)
+    markComplete = (task) => {
+        window.alert("Are you sure you want to mark this task as completed?")
+        this.state.completedTasks.push(0)
+        this.state.toDoTasks.splice(this.state.task);
+        console.log(`${this.state.task} marked completed`)
         console.log(`${this.state.completedTasks} tasks completed`)
     }
     

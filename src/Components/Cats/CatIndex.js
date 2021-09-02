@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import CatList from './CatList';
+import CatList from './CatList';
  
 class CatIndex extends Component {
   constructor(props) {
@@ -14,13 +14,13 @@ class CatIndex extends Component {
     // let {cats} = this.state.breeds
     return  (
       <div>
-        <h1>Cat Breed List</h1>
+        <h2>Cat List as Class Component</h2>
         <div>
           {this.state.breeds.map((cat, index) => <li key={index}>{cat}</li>)}
         </div>
-        {/* <CatList
-          cats={cats}
-        /> */}
+        <CatList
+          cats={this.state.breeds}
+        /> 
       </div>
     );
 

@@ -18,7 +18,7 @@ class DogIndex extends Component {
             loaded: true,
             dogImg: dogs.message,
         })
-            console.log("here come the dogs", dogs) 
+            
         })
         .catch((err) =>
             console.log(err))

@@ -1,20 +1,13 @@
-// import React, { Component } from 'react';
+import React from 'react';
 
 
-// class CatList extends Component {
-//   constructor(props) {
-//   super(props)
-//     this.state = {
-//     cats: this.props.cats
-//   }
-// }
+const CatList = (props) => {
+ return (
+     <div>
+         <h2>Cat List as Functional Component</h2>
+          {props.cats.map((cat, index) => <li key={index}>{cat}</li>)}
+   </div>
+ )
+}
  
-// render(){
-//  return (
-//    <div>
-   
-//    </div>
-//  )
-// }
- 
-// export default CatList;
+export default CatList;
