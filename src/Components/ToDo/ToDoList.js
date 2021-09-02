@@ -6,6 +6,7 @@ class ToDoList extends Component {
         super(props)
         this.state = {
             task: " ",
+            taskId: 0,
             toDoTasks: [],
             completedTasks: [],
             loaded: false
@@ -30,6 +31,7 @@ class ToDoList extends Component {
     componentWillUnmount() {
         this.setState({
             task: " ",
+            taskId: 0,
             toDoTasks: [],
             completedTasks: [],
         })
@@ -64,12 +66,11 @@ class ToDoList extends Component {
     console.log(index)
         window.alert("Are you sure?")
         //this.state.completedTasks.push()
-        let completedTask=this.state.toDoTasks.splice(index, 1);
+        let completedTask=this.state.toDoTasks.splice(index, 1, this.state.toDoTasks);
         this.setState({
             toDoTasks: completedTask
         })
-        console.log(`${this.state.task} marked completed`)
-        console.log(`${this.state.completedTasks} tasks completed`)
+        console.log(`Task ${index} marked completed`)
     }
     
     render() {
@@ -120,13 +121,14 @@ class ToDoList extends Component {
                     <tbody>
                     {this.state.toDoTasks.map((item, index) =>
                         <tr
-                        className="toDoListType"
-                            key={index}>
+                        key={index}
+                        className="toDoListType">
+                         
                             <td>{index}</td>
                             <td>{item}</td>
                             <td>
                             <Button   
-                                onClick={(index) => this.markComplete(index)}>Completed</Button></td>
+                                onClick={(e) => this.markComplete(index, e)}>Completed</Button></td>
                         </tr>
                        
                             )}
